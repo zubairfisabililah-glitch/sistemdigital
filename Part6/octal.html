@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <h1>Konversi Desimal ke Biner</h1>
+    <label>Masukkan Bilangan Desimal</label>
+    <input type="number" id="desimal">
+    <button onclick="konversi()">Konversi</button>
+    <h2>Hasil</h2>
+    <div id="hasil"></div>
+
+<script>
+    function konversi() {
+        let desimal = parseInt(
+            document.getElementById("desimal").value
+        );
+        // Validasi
+        if (isNaN(desimal) || desimal < 0) {
+            document.getElementById("hasil").innerHTML =
+                "Masukkan bilangan desimal yang benar.";
+            return;
+        }
+        // Jika angka 0
+        if (desimal == 0) {
+            document.getElementById("hasil").innerHTML =
+                "0 dalam biner adalah <b>0</b>";
+            return;
+        }
+        let angka = desimal;
+        let biner = "";
+        let proses = "";
+        // Perulangan pembagian dengan 2
+        while (angka > 0) {
+            let hasilBagi = Math.floor(angka / 2);
+            let sisa = angka % 2;
+            // Menampilkan proses
+            proses +=
+                angka + " ÷ 2 = " +
+                hasilBagi + " sisa " +
+                sisa + "<br>";
+            // Sisa dimasukkan ke depan
+            biner = sisa + biner;
+            // Angka berikutnya
+            angka = hasilBagi;
+        }
+        document.getElementById("hasil").innerHTML =
+            "<b>Bilangan Desimal:</b> " +
+            desimal +
+            "<br><br>" +
+            "<b>Tahapan Perhitungan:</b><br>" +
+            proses +
+            "<br>" +
+            "<b>Baca sisa dari bawah ke atas:</b><br>" +
+            "<h2>" + biner + "</h2>" +
+            "<b>Jadi, " +
+            desimal +
+            " desimal = " +
+            biner +
+            " biner</b>";
+    }
+</script>
+</body>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: yellow;
+        margin: 20px;
+        color: #333;
+    }
+
+    h1, h2 {
+        color: #1e40af;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    input[type="number"] {
+        padding: 8px;
+        width: 200px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 8px 16px;
+        background-color: #1e40af;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #374151;
+    }
+
+    #hasil {
+        margin-top: 20px;
+    }
+</style>
+</html>
